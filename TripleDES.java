@@ -12,7 +12,6 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import org.apache.commons.codec.binary.Base64;
-import java.util.Scanner;
 
 public class TripleDES {
 	
@@ -20,16 +19,6 @@ public class TripleDES {
 
     public TripleDES(String myEncryptionKey) {
         key = myEncryptionKey;
-        System.out.print("Masukkan string: ");
-        Scanner input = new Scanner(System.in);
-        String naise = input.nextLine();
-        input.close();
-        try {
-        	System.out.println("Hasil Enkripsi: "+harden(naise));
-        	System.out.println("Hasil Dekripsi: "+soften(harden(naise)));
-        }catch(Exception e) {
-        	
-        }
     }
     
     public String harden(String unencryptedString) throws NoSuchAlgorithmException, UnsupportedEncodingException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
@@ -76,10 +65,5 @@ public class TripleDES {
         byte[] plainText = decipher.doFinal(message);
 
         return new String(plainText, "UTF-8");
-    }
-    
-    public static void main(String[] args) {
-    	TripleDES tes = new TripleDES("inikuncinya");
-    	System.out.println("Kunci kamu: "+tes.key);
     }
 }
