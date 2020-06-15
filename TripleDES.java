@@ -21,7 +21,7 @@ public class TripleDES {
         key = myEncryptionKey;
     }
     
-    public String harden(String unencryptedString) throws NoSuchAlgorithmException, UnsupportedEncodingException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
+    public String encrypt(String unencryptedString) throws NoSuchAlgorithmException, UnsupportedEncodingException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
         MessageDigest md = MessageDigest.getInstance("md5");
         byte[] digestOfPassword = md.digest(key.getBytes("utf-8"));
         byte[] keyBytes = Arrays.copyOf(digestOfPassword, 24);
@@ -42,7 +42,7 @@ public class TripleDES {
         return base64EncryptedString;
     }
     
-    public String soften(String encryptedString) throws UnsupportedEncodingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
+    public String decrypt(String encryptedString) throws UnsupportedEncodingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
         if(encryptedString == null)
         {
             return "";
